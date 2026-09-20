@@ -557,7 +557,7 @@ async function loadSalonInformation() {
 document.addEventListener("DOMContentLoaded", () => {
    testSupabaseConnection();
    loadSalonName();
-   loadSalonInformation();
+// loadSalonInformation();
    
   renderHomeCards();
   renderServiceMenu();
