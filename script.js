@@ -494,11 +494,10 @@ async function loadSalonName() {
 document.addEventListener("DOMContentLoaded", () => {
    testSupabaseConnection();
    loadSalonName();
-   
   renderHomeCards();
   renderServiceMenu();
   populateServiceSelect();
-
+   
   setupNavigation();
   setupCounters();
   setupDateMinimum();
