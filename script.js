@@ -469,8 +469,31 @@ async function testSupabaseConnection() {
 
   console.log("Supabase connection successful:", data);
 }
+/* -------------------------------
+   LOAD SALON NAME
+-------------------------------- */
+
+async function loadSalonName() {
+  const element = document.getElementById("salon-name");
+  if (!element) return;
+
+  const { data, error } = await db
+    .from("salons")
+    .select("name")
+    .eq("salon_code", SALON_CODE)
+    .single();
+
+  if (error || !data || !data.name) {
+    console.error("Could not load salon name:", error);
+    return;
+  }
+
+  element.textContent = data.name;
+}
 document.addEventListener("DOMContentLoaded", () => {
    testSupabaseConnection();
+   loadSalonName();
+   
   renderHomeCards();
   renderServiceMenu();
   populateServiceSelect();
