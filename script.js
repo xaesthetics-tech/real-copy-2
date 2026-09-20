@@ -490,74 +490,10 @@ async function loadSalonName() {
 
   element.textContent = data.name;
 }
-/* -------------------------------
-   LOAD SALON INFORMATION
--------------------------------- */
 
-async function loadSalonInformation() {
-  const { data, error } = await db
-    .from("salons")
-    .select(`
-      tagline,
-      description,
-      location,
-      phone,
-      email,
-      whatsapp,
-      instagram,
-      working_hours,
-      about_text
-    `)
-    .eq("salon_code", SALON_CODE)
-    .single();
-
-  if (error || !data) {
-    console.error("Could not load salon information:", error);
-    return;
-  }
-
-  const location = document.getElementById("salon-location");
-  const phone = document.getElementById("salon-phone");
-  const email = document.getElementById("salon-email");
-  const whatsapp = document.getElementById("salon-whatsapp");
-  const instagram = document.getElementById("salon-instagram");
-  const hours = document.getElementById("salon-hours");
-  const about = document.getElementById("salon-about");
-
-  if (location && data.location) {
-    location.textContent = data.location;
-  }
-
-  if (phone && data.phone) {
-    phone.textContent = data.phone + " ⇗";
-    phone.href = "tel:" + data.phone.replace(/\s+/g, "");
-  }
-
-  if (email && data.email) {
-    email.textContent = data.email + " ⇗";
-    email.href = "mailto:" + data.email;
-  }
-
-  if (whatsapp && data.whatsapp) {
-    whatsapp.href = data.whatsapp;
-  }
-
-  if (instagram && data.instagram) {
-    instagram.textContent = data.instagram;
-  }
-
-  if (hours && data.working_hours) {
-    hours.textContent = data.working_hours;
-  }
-
-  if (about && data.about_text) {
-    about.textContent = data.about_text;
-  }
-}
 document.addEventListener("DOMContentLoaded", () => {
    testSupabaseConnection();
    loadSalonName();
-// loadSalonInformation();
    
   renderHomeCards();
   renderServiceMenu();
