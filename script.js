@@ -1,6 +1,23 @@
 
 "use strict";
+/* -------------------------------
+   SUPABASE CONNECTION
+-------------------------------- */
 
+const SUPABASE_URL =
+  "https://xswwxebfmnhfsczhnuxe.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_PNtKfSQtEnEMtYf9kQ8CdQ_YRFhT2kN";
+
+const SALON_CODE = "salon-01";
+
+const { createClient } = window.supabase;
+
+const db = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 /*
   APSARA BEAUTY ATELIER
   Static website JavaScript
