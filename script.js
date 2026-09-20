@@ -451,8 +451,26 @@ function setupFooterYear() {
 /* -------------------------------
    INITIALIZE WEBSITE
 -------------------------------- */
+/* -------------------------------
+   TEST SUPABASE CONNECTION
+-------------------------------- */
 
+async function testSupabaseConnection() {
+  const { data, error } = await db
+    .from("salons")
+    .select("salon_code, name")
+    .eq("salon_code", SALON_CODE)
+    .single();
+
+  if (error) {
+    console.error("Supabase connection test failed:", error);
+    return;
+  }
+
+  console.log("Supabase connection successful:", data);
+}
 document.addEventListener("DOMContentLoaded", () => {
+   testSupabaseConnection();
   renderHomeCards();
   renderServiceMenu();
   populateServiceSelect();
